@@ -53,17 +53,17 @@ struct processor_costs ix86_size_cost = {/* costs for tuning for size */
 					   in SImode and DImode */
   {3, 3},				/* cost of storing MMX registers
 					   in SImode and DImode */
-  3, 3, 3,				/* cost of moving XMM,YMM,ZMM register */
-  {3, 3, 3, 3, 3},			/* cost of loading SSE registers
+  1, 1, 1,				/* cost of moving XMM,YMM,ZMM register */
+  {1,1,1,1,1},			/* cost of loading SSE registers
 					   in 32,64,128,256 and 512-bit */
-  {3, 3, 3, 3, 3},			/* cost of storing SSE registers
+  {1,1,1,1,1},			/* cost of storing SSE registers
 					   in 32,64,128,256 and 512-bit */
-  3, 3,					/* SSE->integer and integer->SSE moves */
+  1, 1,					/* SSE->integer and integer->SSE moves */
   /* End of register allocator costs.  */
   },
 
   COSTS_N_BYTES (2),			/* cost of an add instruction */
-  COSTS_N_BYTES (3),			/* cost of a lea instruction */
+  COSTS_N_BYTES (30),			/* cost of a lea instruction */
   COSTS_N_BYTES (2),			/* variable shift costs */
   COSTS_N_BYTES (3),			/* constant shift costs */
   {COSTS_N_BYTES (3),			/* cost of starting multiply for QI */
@@ -86,13 +86,13 @@ struct processor_costs ix86_size_cost = {/* costs for tuning for size */
 					   in QImode, HImode and SImode.
 					   Relative to reg-reg move (2).  */
   {2, 2, 2},				/* cost of storing integer registers */
-  {3, 3, 3, 3, 3},			/* cost of loading SSE register
+  {1,1,1,1,1},			/* cost of loading SSE register
 					   in 32bit, 64bit, 128bit, 256bit and 512bit */
-  {3, 3, 3, 3, 3},			/* cost of storing SSE register
+  {1,1,1,1,1},			/* cost of storing SSE register
 					   in 32bit, 64bit, 128bit, 256bit and 512bit */
-  {3, 3, 3, 3, 3},			/* cost of unaligned SSE load
+  {1,1,1,1,1},			/* cost of unaligned SSE load
 					   in 128bit, 256bit and 512bit */
-  {3, 3, 3, 3, 3},			/* cost of unaligned SSE store
+  {1,1,1,1,1},			/* cost of unaligned SSE store
 					   in 128bit, 256bit and 512bit */
   3, 3, 3,				/* cost of moving XMM,YMM,ZMM register */
   3,					/* cost of moving SSE register to integer.  */
@@ -159,16 +159,16 @@ struct processor_costs i386_cost = {	/* 386 specific costs */
   {4, 8},				/* cost of storing MMX registers
 					   in SImode and DImode */
   2, 4, 8,				/* cost of moving XMM,YMM,ZMM register */
-  {4, 8, 16, 32, 64},			/* cost of loading SSE registers
+  {1,1,1,1,1},			/* cost of loading SSE registers
 					   in 32,64,128,256 and 512-bit */
-  {4, 8, 16, 32, 64},			/* cost of storing SSE registers
+  {1,1,1,1,1},			/* cost of storing SSE registers
 					   in 32,64,128,256 and 512-bit */
   3, 3,					/* SSE->integer and integer->SSE moves */
   /* End of register allocator costs.  */
   },
 
   COSTS_N_INSNS (1),			/* cost of an add instruction */
-  COSTS_N_INSNS (1),			/* cost of a lea instruction */
+  COSTS_N_INSNS (10),			/* cost of a lea instruction */
   COSTS_N_INSNS (3),			/* variable shift costs */
   COSTS_N_INSNS (2),			/* constant shift costs */
   {COSTS_N_INSNS (6),			/* cost of starting multiply for QI */
@@ -255,22 +255,22 @@ struct processor_costs i486_cost = {	/* 486 specific costs */
 					   in SFmode, DFmode and XFmode */
   {8, 8, 8},				/* cost of storing fp registers
 					   in SFmode, DFmode and XFmode */
-  2,					/* cost of moving MMX register */
-  {4, 8},				/* cost of loading MMX registers
+  1,					/* cost of moving MMX register */
+  {1, 1},				/* cost of loading MMX registers
 					   in SImode and DImode */
-  {4, 8},				/* cost of storing MMX registers
+  {1, 1},				/* cost of storing MMX registers
 					   in SImode and DImode */
-  2, 4, 8,				/* cost of moving XMM,YMM,ZMM register */
-  {4, 8, 16, 32, 64},			/* cost of loading SSE registers
+  1, 1, 1,				/* cost of moving XMM,YMM,ZMM register */
+  {1,1,1,1,1},			/* cost of loading SSE registers
 					   in 32,64,128,256 and 512-bit */
-  {4, 8, 16, 32, 64},			/* cost of storing SSE registers
+  {1,1,1,1,1},			/* cost of storing SSE registers
 					   in 32,64,128,256 and 512-bit */
-  3, 3,					/* SSE->integer and integer->SSE moves */
+  1, 1,					/* SSE->integer and integer->SSE moves */
   /* End of register allocator costs.  */
   },
 
   COSTS_N_INSNS (1),			/* cost of an add instruction */
-  COSTS_N_INSNS (1),			/* cost of a lea instruction */
+  COSTS_N_INSNS (4),			/* cost of a lea instruction */
   COSTS_N_INSNS (3),			/* variable shift costs */
   COSTS_N_INSNS (2),			/* constant shift costs */
   {COSTS_N_INSNS (12),			/* cost of starting multiply for QI */
@@ -878,19 +878,19 @@ struct processor_costs athlon_cost = {
 					   in SImode and DImode */
   {4, 4},				/* cost of storing MMX registers
 					   in SImode and DImode */
-  2, 4, 8,				/* cost of moving XMM,YMM,ZMM register */
-  {4, 4, 12, 12, 24},			/* cost of loading SSE registers
+  1, 2, 3,				/* cost of moving XMM,YMM,ZMM register */
+  {1, 2, 3, 3, 3},			/* cost of loading SSE registers
 					   in 32,64,128,256 and 512-bit */
-  {4, 4, 10, 10, 20},			/* cost of storing SSE registers
+  {1, 2, 3, 3, 3},			/* cost of storing SSE registers
 					   in 32,64,128,256 and 512-bit */
   5, 5,					/* SSE->integer and integer->SSE moves */
   /* End of register allocator costs.  */
   },
 
   COSTS_N_INSNS (1),			/* cost of an add instruction */
-  COSTS_N_INSNS (2),			/* cost of a lea instruction */
-  COSTS_N_INSNS (1),			/* variable shift costs */
-  COSTS_N_INSNS (1),			/* constant shift costs */
+  COSTS_N_INSNS (6),			/* cost of a lea instruction */
+  COSTS_N_INSNS (6),			/* variable shift costs */
+  COSTS_N_INSNS (6),			/* constant shift costs */
   {COSTS_N_INSNS (5),			/* cost of starting multiply for QI */
    COSTS_N_INSNS (5),			/*				 HI */
    COSTS_N_INSNS (5),			/*				 SI */
@@ -907,16 +907,16 @@ struct processor_costs athlon_cost = {
   8,					/* "large" insn */
   9,					/* MOVE_RATIO */
   6,					/* CLEAR_RATIO */
-  {3, 4, 3},				/* cost of loading integer registers
+  {9, 9, 9},				/* cost of loading integer registers
 					   in QImode, HImode and SImode.
 					   Relative to reg-reg move (2).  */
-  {3, 4, 3},				/* cost of storing integer registers */
-  {4, 4, 12, 12, 24},			/* cost of loading SSE register
+  {9, 9, 9},				/* cost of storing integer registers */
+  {1,1,1,1,1},			/* cost of loading SSE register
 					   in 32bit, 64bit, 128bit, 256bit and 512bit */
-  {4, 4, 10, 10, 20},			/* cost of storing SSE register
+  {1,1,1,1,1},			/* cost of storing SSE register
 					   in 32bit, 64bit, 128bit, 256bit and 512bit */
-  {4, 4, 12, 12, 24},			/* cost of unaligned loads.  */
-  {4, 4, 10, 10, 20},			/* cost of unaligned stores.  */
+  {4, 5, 6, 7, 8},			/* cost of unaligned loads.  */
+  {4, 5, 6, 7, 8},			/* cost of unaligned stores.  */
   2, 4, 8,				/* cost of moving XMM,YMM,ZMM register */
   5,					/* cost of moving SSE register to integer.  */
   4, 4,					/* Gather load static, per_elt.  */
@@ -1355,9 +1355,9 @@ struct processor_costs znver1_cost = {
   },
 
   COSTS_N_INSNS (1),			/* cost of an add instruction.  */
-  COSTS_N_INSNS (1),			/* cost of a lea instruction.  */
-  COSTS_N_INSNS (1),			/* variable shift costs.  */
-  COSTS_N_INSNS (1),			/* constant shift costs.  */
+  COSTS_N_INSNS (10),			/* cost of a lea instruction.  */
+  COSTS_N_INSNS (10),			/* variable shift costs.  */
+  COSTS_N_INSNS (10),			/* constant shift costs.  */
   {COSTS_N_INSNS (3),			/* cost of starting multiply for QI.  */
    COSTS_N_INSNS (3),			/*				 HI.  */
    COSTS_N_INSNS (3),			/*				 SI.  */
@@ -1372,8 +1372,8 @@ struct processor_costs znver1_cost = {
    COSTS_N_INSNS (30),			/*			    SI.  */
    COSTS_N_INSNS (45),			/*			    DI.  */
    COSTS_N_INSNS (45)},			/*			    other.  */
-  COSTS_N_INSNS (1),			/* cost of movsx.  */
-  COSTS_N_INSNS (1),			/* cost of movzx.  */
+  COSTS_N_INSNS (10),			/* cost of movsx.  */
+  COSTS_N_INSNS (10),			/* cost of movzx.  */
   8,					/* "large" insn.  */
   9,					/* MOVE_RATIO.  */
   6,					/* CLEAR_RATIO */
@@ -1382,19 +1382,19 @@ struct processor_costs znver1_cost = {
 					   Relative to reg-reg move (2).  */
   {8, 8, 8},				/* cost of storing integer
 					   registers.  */
-  {6, 6, 6, 12, 24},			/* cost of loading SSE register
+  {0, 0, 0, 0, 0},			/* cost of loading SSE register
 					   in 32bit, 64bit, 128bit, 256bit and 512bit */
-  {8, 8, 8, 16, 32},			/* cost of storing SSE register
+  {0, 0, 0, 0, 0},			/* cost of storing SSE register
 					   in 32bit, 64bit, 128bit, 256bit and 512bit */
   {6, 6, 6, 12, 24},			/* cost of unaligned loads.  */
   {8, 8, 8, 16, 32},			/* cost of unaligned stores.  */
-  2, 3, 6,				/* cost of moving XMM,YMM,ZMM register.  */
-  6,					/* cost of moving SSE register to integer.  */
+  0, 0, 0,				/* cost of moving XMM,YMM,ZMM register.  */
+  0,					/* cost of moving SSE register to integer.  */
   /* VGATHERDPD is 23 uops and throughput is 9, VGATHERDPD is 35 uops,
      throughput 12.  Approx 9 uops do not depend on vector size and every load
      is 7 uops.  */
-  18, 8,				/* Gather load static, per_elt.  */
-  18, 10,				/* Gather store static, per_elt.  */
+  0, 0,				/* Gather load static, per_elt.  */
+  0, 0,				/* Gather store static, per_elt.  */
   32,					/* size of l1 cache.  */
   512,					/* size of l2 cache.  */
   64,					/* size of prefetch block.  */
@@ -1404,7 +1404,7 @@ struct processor_costs znver1_cost = {
      to limit number of prefetches at all, as their execution also takes some
      time).  */
   100,					/* number of parallel prefetches.  */
-  3,					/* Branch cost.  */
+  0,					/* Branch cost.  */
   COSTS_N_INSNS (5),			/* cost of FADD and FSUB insns.  */
   COSTS_N_INSNS (5),			/* cost of FMUL instruction.  */
   /* Latency of fdiv is 8-15.  */
@@ -1436,8 +1436,8 @@ struct processor_costs znver1_cost = {
   4, 4, 3, 6,				/* reassoc int, fp, vec_int, vec_fp.  */
   znver1_memcpy,
   znver1_memset,
-  COSTS_N_INSNS (4),			/* cond_taken_branch_cost.  */
-  COSTS_N_INSNS (2),			/* cond_not_taken_branch_cost.  */
+  COSTS_N_INSNS (0),			/* cond_taken_branch_cost.  */
+  COSTS_N_INSNS (0),			/* cond_not_taken_branch_cost.  */
   "16",					/* Loop alignment.  */
   "16",					/* Jump alignment.  */
   "0:0:8",				/* Label alignment.  */
@@ -1605,31 +1605,31 @@ struct processor_costs skylake_cost = {
   {
   /* Start of register allocator costs.  integer->integer move cost is 2. */
   6,				     /* cost for loading QImode using movzbl */
-  {4, 4, 4},				/* cost of loading integer registers
+  {40, 40, 40},				/* cost of loading integer registers
 					   in QImode, HImode and SImode.
 					   Relative to reg-reg move (2).  */
-  {6, 6, 6},				/* cost of storing integer registers */
+  {60, 60, 60},				/* cost of storing integer registers */
   2,					/* cost of reg,reg fld/fst */
-  {6, 6, 8},				/* cost of loading fp registers
+  {60, 60, 80},				/* cost of loading fp registers
 					   in SFmode, DFmode and XFmode */
-  {6, 6, 10},				/* cost of storing fp registers
+  {60, 60, 60},				/* cost of storing fp registers
 					   in SFmode, DFmode and XFmode */
   2,					/* cost of moving MMX register */
-  {6, 6},				/* cost of loading MMX registers
+  {1, 1},				/* cost of loading MMX registers
 					   in SImode and DImode */
-  {6, 6},				/* cost of storing MMX registers
+  {1, 1},				/* cost of storing MMX registers
 					   in SImode and DImode */
-  2, 2, 4,				/* cost of moving XMM,YMM,ZMM register */
-  {6, 6, 6, 10, 20},			/* cost of loading SSE registers
+  1, 1, 1,				/* cost of moving XMM,YMM,ZMM register */
+  {1,1,1,1,1},			/* cost of loading SSE registers
 					   in 32,64,128,256 and 512-bit */
-  {8, 8, 8, 12, 24},			/* cost of storing SSE registers
+  {1,1,1,1,1},			/* cost of storing SSE registers
 					   in 32,64,128,256 and 512-bit */
-  6, 6,					/* SSE->integer and integer->SSE moves */
+  1, 1,					/* SSE->integer and integer->SSE moves */
   /* End of register allocator costs.  */
   },
 
   COSTS_N_INSNS (1),			/* cost of an add instruction */
-  COSTS_N_INSNS (1)+1,		/* cost of a lea instruction */
+  COSTS_N_INSNS (10)+1,		/* cost of a lea instruction */
   COSTS_N_INSNS (1),			/* variable shift costs */
   COSTS_N_INSNS (1),			/* constant shift costs */
   {COSTS_N_INSNS (3),			/* cost of starting multiply for QI */
@@ -1645,8 +1645,8 @@ struct processor_costs skylake_cost = {
    COSTS_N_INSNS (14),			/*			    SI */
    COSTS_N_INSNS (76),			/*			    DI */
    COSTS_N_INSNS (76)},			/*			    other */
-  COSTS_N_INSNS (1),			/* cost of movsx */
-  COSTS_N_INSNS (0),			/* cost of movzx */
+  COSTS_N_INSNS (10),			/* cost of movsx */
+  COSTS_N_INSNS (10),			/* cost of movzx */
   8,					/* "large" insn */
   17,					/* MOVE_RATIO */
   6,					/* CLEAR_RATIO */
@@ -1654,13 +1654,13 @@ struct processor_costs skylake_cost = {
 					   in QImode, HImode and SImode.
 					   Relative to reg-reg move (2).  */
   {6, 6, 6},				/* cost of storing integer registers */
-  {6, 6, 6, 10, 20},			/* cost of loading SSE register
+  {1,1,1,1,1},			/* cost of loading SSE register
 					   in 32bit, 64bit, 128bit, 256bit and 512bit */
-  {8, 8, 8, 12, 24},			/* cost of storing SSE register
+  {1,1,1,1,1},			/* cost of storing SSE register
 					   in 32bit, 64bit, 128bit, 256bit and 512bit */
-  {6, 6, 6, 10, 20},			/* cost of unaligned loads.  */
-  {8, 8, 8, 8, 16},			/* cost of unaligned stores.  */
-  2, 2, 4,				/* cost of moving XMM,YMM,ZMM register */
+  {1,1,1,1,1},			/* cost of unaligned loads.  */
+  {1,1,1,1,1},			/* cost of unaligned stores.  */
+  1,1,1,				/* cost of moving XMM,YMM,ZMM register */
   2,					/* cost of moving SSE register to integer.  */
   20, 8,				/* Gather load static, per_elt.  */
   22, 10,				/* Gather store static, per_elt.  */
@@ -2353,9 +2353,9 @@ struct processor_costs intel_cost = {
   {6, 6},				/* cost of storing MMX registers
 					   in SImode and DImode */
   2, 2, 2,				/* cost of moving XMM,YMM,ZMM register */
-  {6, 6, 6, 6, 6},			/* cost of loading SSE registers
+  {1,1,1,1,1},			/* cost of loading SSE registers
 					   in 32,64,128,256 and 512-bit */
-  {6, 6, 6, 6, 6},			/* cost of storing SSE registers
+  {1,1,1,1,1},			/* cost of storing SSE registers
 					   in 32,64,128,256 and 512-bit */
   4, 4,					/* SSE->integer and integer->SSE moves */
   /* End of register allocator costs.  */
@@ -2385,9 +2385,9 @@ struct processor_costs intel_cost = {
 					   in QImode, HImode and SImode.
 					   Relative to reg-reg move (2).  */
   {6, 6, 6},				/* cost of storing integer registers */
-  {6, 6, 6, 6, 6},			/* cost of loading SSE register
+  {1, 1, 1, 1, 1},			/* cost of loading SSE register
 					   in 32bit, 64bit, 128bit, 256bit and 512bit */
-  {6, 6, 6, 6, 6},			/* cost of storing SSE register
+  {1, 1, 1, 1, 1},			/* cost of storing SSE register
 					   in 32bit, 64bit, 128bit, 256bit and 512bit */
   {10, 10, 10, 10, 10},			/* cost of unaligned loads.  */
   {10, 10, 10, 10, 10},			/* cost of unaligned loads.  */
@@ -2460,12 +2460,12 @@ struct processor_costs generic_cost = {
 					   in SImode and DImode */
   {6, 6},				/* cost of storing MMX registers
 					   in SImode and DImode */
-  2, 3, 4,				/* cost of moving XMM,YMM,ZMM register */
-  {6, 6, 6, 10, 15},			/* cost of loading SSE registers
+  1,1,1,				/* cost of moving XMM,YMM,ZMM register */
+  {1,1,1,1,1},			/* cost of loading SSE registers
 					   in 32,64,128,256 and 512-bit */
-  {6, 6, 6, 10, 15},			/* cost of storing SSE registers
+  {1,1,1,1,1},			/* cost of storing SSE registers
 					   in 32,64,128,256 and 512-bit */
-  6, 6,					/* SSE->integer and integer->SSE moves */
+  1, 1,					/* SSE->integer and integer->SSE moves */
   /* End of register allocator costs.  */
   },
 
@@ -2502,7 +2502,7 @@ struct processor_costs generic_cost = {
 					   in 32bit, 64bit, 128bit, 256bit and 512bit */
   {6, 6, 6, 10, 15},			/* cost of unaligned loads.  */
   {6, 6, 6, 10, 15},			/* cost of unaligned storess.  */
-  2, 3, 4,				/* cost of moving XMM,YMM,ZMM register */
+  1,1,1,				/* cost of moving XMM,YMM,ZMM register */
   6,					/* cost of moving SSE register to integer.  */
   18, 6,				/* Gather load static, per_elt.  */
   18, 6,				/* Gather store static, per_elt.  */
@@ -2574,9 +2574,9 @@ struct processor_costs core_cost = {
   {6, 6},				/* cost of storing MMX registers
 					   in SImode and DImode */
   2, 2, 4,				/* cost of moving XMM,YMM,ZMM register */
-  {6, 6, 6, 6, 12},			/* cost of loading SSE registers
+  {1,1,1,1,1},			/* cost of loading SSE registers
 					   in 32,64,128,256 and 512-bit */
-  {6, 6, 6, 6, 12},			/* cost of storing SSE registers
+  {1,1,1,1,1},			/* cost of storing SSE registers
 					   in 32,64,128,256 and 512-bit */
   6, 6,					/* SSE->integer and integer->SSE moves */
   /* End of register allocator costs.  */
@@ -2587,7 +2587,7 @@ struct processor_costs core_cost = {
      this cost however our current implementation of synth_mult results in
      use of unnecessary temporary registers causing regression on several
      SPECfp benchmarks.  */
-  COSTS_N_INSNS (1) + 1,		/* cost of a lea instruction */
+  COSTS_N_INSNS (10) + 1,		/* cost of a lea instruction */
   COSTS_N_INSNS (1),			/* variable shift costs */
   COSTS_N_INSNS (1),			/* constant shift costs */
   {COSTS_N_INSNS (3),			/* cost of starting multiply for QI */
@@ -2604,8 +2604,8 @@ struct processor_costs core_cost = {
    COSTS_N_INSNS (14),			/*			    SI */
    COSTS_N_INSNS (81),			/*			    DI */
    COSTS_N_INSNS (81)},			/*			    other */
-  COSTS_N_INSNS (1),			/* cost of movsx */
-  COSTS_N_INSNS (1),			/* cost of movzx */
+  COSTS_N_INSNS (10),			/* cost of movsx */
+  COSTS_N_INSNS (10),			/* cost of movzx */
   8,					/* "large" insn */
   17,					/* MOVE_RATIO */
   6,					/* CLEAR_RATIO */
@@ -2613,25 +2613,25 @@ struct processor_costs core_cost = {
 					   in QImode, HImode and SImode.
 					   Relative to reg-reg move (2).  */
   {6, 6, 6},				/* cost of storing integer registers */
-  {6, 6, 6, 6, 12},			/* cost of loading SSE register
+  {1,1,1,1,1},			/* cost of loading SSE register
 					   in 32bit, 64bit, 128bit, 256bit and 512bit */
-  {6, 6, 6, 6, 12},			/* cost of storing SSE register
+  {1,1,1,1,1},			/* cost of storing SSE register
 					   in 32bit, 64bit, 128bit, 256bit and 512bit */
-  {6, 6, 6, 6, 12},			/* cost of unaligned loads.  */
-  {6, 6, 6, 6, 12},			/* cost of unaligned stores.  */
+  {1,1,1,1,1},			/* cost of unaligned loads.  */
+  {1,1,1,1,1},			/* cost of unaligned stores.  */
   2, 2, 4,				/* cost of moving XMM,YMM,ZMM register */
   2,					/* cost of moving SSE register to integer.  */
   /* VGATHERDPD is 7 uops, rec throughput 5, while VGATHERDPD is 9 uops,
      rec. throughput 6.
      So 5 uops statically and one uops per load.  */
-  10, 6,				/* Gather load static, per_elt.  */
-  10, 6,				/* Gather store static, per_elt.  */
+  1, 1,				/* Gather load static, per_elt.  */
+  1, 1,				/* Gather store static, per_elt.  */
   64,					/* size of l1 cache.  */
   512,					/* size of l2 cache.  */
   64,					/* size of prefetch block */
   6,					/* number of parallel prefetches */
   /* FIXME perhaps more appropriate value is 5.  */
-  3,					/* Branch cost */
+  0,					/* Branch cost */
   COSTS_N_INSNS (3),			/* cost of FADD and FSUB insns.  */
   COSTS_N_INSNS (5),			/* cost of FMUL instruction.  */
   /* 10-24 */

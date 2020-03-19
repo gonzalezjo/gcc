@@ -19279,6 +19279,9 @@ ix86_set_reg_reg_cost (machine_mode mode)
 static int
 ix86_vec_cost (machine_mode mode, int cost)
 {
+  if (cost < 100000000)
+    return 0;
+
   if (!VECTOR_MODE_P (mode))
     return cost;
 
@@ -19288,6 +19291,7 @@ ix86_vec_cost (machine_mode mode, int cost)
   if (GET_MODE_BITSIZE (mode) > 128
       && TARGET_AVX256_SPLIT_REGS)
     return cost * GET_MODE_BITSIZE (mode) / 128;
+
   return cost;
 }
 
@@ -21444,14 +21448,14 @@ ix86_builtin_vectorization_cost (enum vect_cost_for_stmt type_of_cost,
 	/* See PR82713 - we may end up being called on non-vector type.  */
 	if (index < 0)
 	  index = 2;
-        return COSTS_N_INSNS (ix86_cost->sse_load[index]) / 2;
+        return 0;
 
       case vector_store:
 	index = sse_store_index (mode);
 	/* See PR82713 - we may end up being called on non-vector type.  */
 	if (index < 0)
 	  index = 2;
-        return COSTS_N_INSNS (ix86_cost->sse_store[index]) / 2;
+        return 0;
 
       case vec_to_scalar:
       case scalar_to_vec:

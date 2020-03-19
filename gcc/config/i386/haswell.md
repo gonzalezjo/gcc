@@ -78,7 +78,7 @@
 			      (eq_attr "type" "other,multi,str"))
 			 "hsw_decoder0")
 
-(define_insn_reservation "hsw_call" 1
+(define_insn_reservation "hsw_call" 1000
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (eq_attr "type" "call,callv"))
 			 "hsw_decoder0")
@@ -116,20 +116,20 @@
 				   (eq_attr "type" "icmov")))
 			 "hsw_decodern,hsw_p23+hsw_p0156,hsw_p0156")
 
-(define_insn_reservation "hsw_push_reg" 3
+(define_insn_reservation "hsw_push_reg" 3000
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "store")
 				   (eq_attr "type" "push")))
 			 "hsw_decodern,hsw_p4+hsw_p237")
 
-(define_insn_reservation "hsw_push_mem" 3
+(define_insn_reservation "hsw_push_mem" 3000
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "both")
 				   (eq_attr "type" "push")))
 			 "hsw_decodern,hsw_p4+hsw_p237,hsw_p237")
 
 ;; Consider lea latency as having 2 components.
-(define_insn_reservation "hsw_lea" 1
+(define_insn_reservation "hsw_lea" 1000
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "none")
 				   (eq_attr "type" "lea")))
@@ -147,19 +147,19 @@
 				   (eq_attr "type" "ishift,ishift1,rotate,rotate1")))
 			 "hsw_decodern,(hsw_p0|hsw_p6)+hsw_p237+hsw_p4")
 
-(define_insn_reservation "hsw_branch" 1
+(define_insn_reservation "hsw_branch" 10
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "none")
 				   (eq_attr "type" "ibr")))
 			 "hsw_decodern,hsw_p6")
 
-(define_insn_reservation "hsw_indirect_branch" 2
+(define_insn_reservation "hsw_indirect_branch" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "!none")
 				   (eq_attr "type" "ibr")))
 			 "hsw_decoder0,hsw_p23+hsw_p6")
 
-(define_insn_reservation "hsw_leave" 4
+(define_insn_reservation "hsw_leave" 40
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (eq_attr "type" "leave"))
 			 "hsw_decoder0,hsw_p23+hsw_p0156,hsw_p0156")
@@ -381,28 +381,28 @@
 				   (eq_attr "type" "mmxshft")))
 			 "hsw_decodern,hsw_p23+hsw_p0")
 
-(define_insn_reservation "hsw_mmx_sse_shft" 1
+(define_insn_reservation "hsw_mmx_sse_shft" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "none")
 				   (and (eq_attr "type" "sseishft")
 					(eq_attr "length_immediate" "!0"))))
 			 "hsw_decodern,hsw_p01")
 
-(define_insn_reservation "hsw_mmx_sse_shft_load" 2
+(define_insn_reservation "hsw_mmx_sse_shft_load" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "load")
 				   (and (eq_attr "type" "sseishft")
 					(eq_attr "length_immediate" "!0"))))
 			 "hsw_decodern,hsw_p01+hsw_p23")
 
-(define_insn_reservation "hsw_mmx_sse_shft1" 2
+(define_insn_reservation "hsw_mmx_sse_shft1" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "none")
 				   (and (eq_attr "type" "sseishft")
 					(eq_attr "length_immediate" "0"))))
 			 "hsw_decodern,hsw_p01")
 
-(define_insn_reservation "hsw_mmx_sse_shft1_load" 3
+(define_insn_reservation "hsw_mmx_sse_shft1_load" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "load")
 				   (and (eq_attr "type" "sseishft")
@@ -421,171 +421,171 @@
 				   (eq_attr "type" "mmxmul,sseimul")))
 			 "hsw_decodern,hsw_p23+hsw_p01")
 
-(define_insn_reservation "hsw_sse_mmxcvt" 4
+(define_insn_reservation "hsw_sse_mmxcvt" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "mode" "DI")
 				   (eq_attr "type" "mmxcvt")))
 			 "hsw_decodern,hsw_p1")
 
-;; (define_insn_reservation "hsw_sse_mmxshft" 2
+;; (define_insn_reservation "hsw_sse_mmxshft" 0
 ;;			 (and (eq_attr "cpu" "generic,haswell")
 ;;			      (and (eq_attr "mode" "TI")
 ;;				   (eq_attr "type" "mmxshft")))
 ;;			 "hsw_decodern,hsw_p01")
 
 ;; The sfence instruction.
-(define_insn_reservation "hsw_sse_sfence" 2
+(define_insn_reservation "hsw_sse_sfence" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "unknown")
 				   (eq_attr "type" "sse")))
 			 "hsw_decoder0,hsw_p23+hsw_p4")
 
-(define_insn_reservation "hsw_sse_SFDF" 3
+(define_insn_reservation "hsw_sse_SFDF" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "mode" "SF,DF")
 				   (eq_attr "type" "sse")))
 			 "hsw_decodern,hsw_p01")
 
-(define_insn_reservation "hsw_sse_V4SF" 4
+(define_insn_reservation "hsw_sse_V4SF" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "mode" "V4SF")
 				   (eq_attr "type" "sse")))
 			 "hsw_decodern,hsw_p01")
 
-(define_insn_reservation "hsw_sse_V8SF" 4
+(define_insn_reservation "hsw_sse_V8SF" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "mode" "V8SF,V4DF")
 				   (eq_attr "type" "sse")))
 			 "hsw_decodern,hsw_p01")
 
-(define_insn_reservation "hsw_sse_addcmp" 3
+(define_insn_reservation "hsw_sse_addcmp" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "none")
 				   (eq_attr "type" "sseadd1,ssecmp,ssecomi")))
 			 "hsw_decodern,hsw_p01")
 
-(define_insn_reservation "hsw_sse_addcmp_load" 3
+(define_insn_reservation "hsw_sse_addcmp_load" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "load")
 				   (eq_attr "type" "sseadd1,ssecmp,ssecomi")))
 			 "hsw_decodern,hsw_p23+hsw_p01")
 
-(define_insn_reservation "hsw_sse_logic" 1
+(define_insn_reservation "hsw_sse_logic" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "none")
 				   (eq_attr "type" "sselog,sselog1")))
 			 "hsw_decodern,hsw_p015")
 
-(define_insn_reservation "hsw_sse_logic_load" 2
+(define_insn_reservation "hsw_sse_logic_load" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "load")
 				   (eq_attr "type" "sselog,sselog1")))
 			 "hsw_decodern,hsw_p015+hsw_p23")
 
-(define_insn_reservation "hsw_sse_add" 3
+(define_insn_reservation "hsw_sse_add" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "none")
 				   (eq_attr "type" "sseadd")))
 			"hsw_decodern,hsw_p1|hsw_p5")
 
-(define_insn_reservation "hsw_sse_add_load" 3
+(define_insn_reservation "hsw_sse_add_load" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "load")
 				   (eq_attr "type" "sseadd")))
 			"hsw_decodern,(hsw_p1|hsw_p5)+hsw_p23")
 
-(define_insn_reservation "hsw_sse_mul" 5
+(define_insn_reservation "hsw_sse_mul" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "none")
 				   (eq_attr "type" "ssemul")))
 			"hsw_decodern,hsw_p0")
 
-(define_insn_reservation "hsw_sse_mul_load" 5
+(define_insn_reservation "hsw_sse_mul_load" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "load")
 				   (eq_attr "type" "ssemul")))
 			"hsw_decodern,hsw_p0+hsw_p23")
 ;; Use skylake pipeline.
-(define_insn_reservation "hsw_sse_muladd" 5
+(define_insn_reservation "hsw_sse_muladd" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "none")
 					(eq_attr "type" "ssemuladd")))
 			"hsw_decodern,hsw_p01")
 
-(define_insn_reservation "hsw_sse_muladd_load" 5
+(define_insn_reservation "hsw_sse_muladd_load" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "load")
 					(eq_attr "type" "ssemuladd")))
 			"hsw_decodern,hsw_p01+hsw_p23")
 
-(define_insn_reservation "hsw_sse_div_SF" 18
+(define_insn_reservation "hsw_sse_div_SF" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "none")
 				   (and (eq_attr "mode" "SF,V4SF,V8SF")
 					(eq_attr "type" "ssediv"))))
 			 "hsw_decodern,hsw_p0,hsw_ssediv*14")
 
-(define_insn_reservation "hsw_sse_div_SF_load" 18
+(define_insn_reservation "hsw_sse_div_SF_load" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "none")
 				   (and (eq_attr "mode" "SF,V4SF,V8SF")
 					(eq_attr "type" "ssediv"))))
 			 "hsw_decodern,(hsw_p23+hsw_p0),hsw_ssediv*14")
 
-(define_insn_reservation "hsw_sse_div_DF" 28
+(define_insn_reservation "hsw_sse_div_DF" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "none")
 				   (and (eq_attr "mode" "DF,V2DF,V4DF")
 					(eq_attr "type" "ssediv"))))
 			 "hsw_decodern,hsw_p0,hsw_ssediv*20")
 
-(define_insn_reservation "hsw_sse_div_DF_load" 28
+(define_insn_reservation "hsw_sse_div_DF_load" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "none")
 				   (and (eq_attr "mode" "DF,V2DF,V4DF")
 					(eq_attr "type" "ssediv"))))
 			 "hsw_decodern,(hsw_p23+hsw_p0),hsw_ssediv*20")
 
-(define_insn_reservation "hsw_sse_icvt" 4
+(define_insn_reservation "hsw_sse_icvt" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "none")
 				   (eq_attr "type" "sseicvt")))
 			 "hsw_decodern,hsw_p1")
 
-(define_insn_reservation "hsw_sse_icvt_load" 4
+(define_insn_reservation "hsw_sse_icvt_load" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "!none")
 				   (eq_attr "type" "sseicvt")))
 			 "hsw_decodern,hsw_p23+hsw_p1")
 
 
-(define_insn_reservation "hsw_sse_icvt_SI" 3
+(define_insn_reservation "hsw_sse_icvt_SI" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "none")
 				   (and (eq_attr "mode" "SI")
 					(eq_attr "type" "sseicvt"))))
 			 "hsw_decodern,hsw_p1")
 
-(define_insn_reservation "hsw_sse_icvt_SI_load" 3
+(define_insn_reservation "hsw_sse_icvt_SI_load" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "!none")
 				   (and (eq_attr "mode" "SI")
 					(eq_attr "type" "sseicvt"))))
 			 "hsw_decodern,hsw_p23+hsw_p1")
 
-(define_insn_reservation "hsw_sse_mov" 1
+(define_insn_reservation "hsw_sse_mov" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "none")
 				   (eq_attr "type" "ssemov")))
 			 "hsw_decodern,hsw_p015")
 
-(define_insn_reservation "hsw_sse_mov_load" 2
+(define_insn_reservation "hsw_sse_mov_load" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "load")
 				   (eq_attr "type" "ssemov")))
 			 "hsw_decodern,hsw_p23")
 
-(define_insn_reservation "hsw_sse_mov_store" 1
+(define_insn_reservation "hsw_sse_mov_store" 0
 			 (and (eq_attr "cpu" "generic,haswell")
 			      (and (eq_attr "memory" "store")
 				   (eq_attr "type" "ssemov")))

@@ -1241,11 +1241,11 @@ STMT_VINFO_BB_VINFO (stmt_vec_info stmt_vinfo)
 #define PURE_SLP_STMT(S)                  ((S)->slp_type == pure_slp)
 #define STMT_SLP_TYPE(S)                   (S)->slp_type
 
-#define VECT_MAX_COST 1000
+#define VECT_MAX_COST 0
 
 /* The maximum number of intermediate steps required in multi-step type
    conversion.  */
-#define MAX_INTERM_CVT_STEPS         3
+#define MAX_INTERM_CVT_STEPS         300
 
 #define MAX_VECTORIZATION_FACTOR INT_MAX
 

@@ -1128,7 +1128,7 @@ vect_compute_single_scalar_iteration_cost (loop_vec_info loop_vinfo)
   unsigned dummy, body_cost = 0;
   finish_cost (target_cost_data, &dummy, &body_cost, &dummy);
   destroy_cost_data (target_cost_data);
-  LOOP_VINFO_SINGLE_SCALAR_ITERATION_COST (loop_vinfo) = body_cost;
+  LOOP_VINFO_SINGLE_SCALAR_ITERATION_COST (loop_vinfo) = body_cost+1000000;
 }
 
 

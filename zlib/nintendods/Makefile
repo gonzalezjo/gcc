@@ -88,7 +88,7 @@ export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
 #---------------------------------------------------------------------------------
 all: $(BUILD)
 	@[ -d $@ ] || mkdir -p include
-	@cp ../../*.h include
+	cp ../../*.h include
 
 lib:
 	@[ -d $@ ] || mkdir -p $@
